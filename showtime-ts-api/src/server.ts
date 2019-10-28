@@ -1,6 +1,6 @@
 import https from 'https';
 import fs from 'fs';
-import { createConnection } from 'mysql';
+import { createPool } from 'mysql2';
 import logger from './utils/logger';
 import {
   DB_HOST, DB_NAME, DB_USER, DB_PASS, CERT, CERT_KEY, CERT_PASS,
@@ -15,7 +15,7 @@ const httpsOptions = {
 };
 
 // Connection with the database
-const con = createConnection({
+const con = createPool({
   connectTimeout: 60000,
   multipleStatements: true,
   host: `${DB_HOST}`,
@@ -40,4 +40,3 @@ con.connect((err) => {
     logger.info(`HTTP App running on port 3333 in mode ${app.get('env')}!`);
   });
 });
-
