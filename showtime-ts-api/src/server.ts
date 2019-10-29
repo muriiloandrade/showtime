@@ -1,12 +1,14 @@
 import https from 'https';
 import fs from 'fs';
-import { createPool } from 'mysql2';
 import logger from './utils/logger';
 import {
-  DB_HOST, DB_NAME, DB_USER, DB_PASS, CERT, CERT_KEY, CERT_PASS,
+  CERT, CERT_KEY, CERT_PASS,
 } from './utils/secrets';
 
 import app from './app';
+
+// Connection with the database
+import pool from './db';
 
 const httpsOptions = {
   cert: fs.readFileSync(`${CERT}`),
@@ -14,17 +16,7 @@ const httpsOptions = {
   passphrase: `${CERT_PASS}`,
 };
 
-// Connection with the database
-const con = createPool({
-  connectTimeout: 60000,
-  multipleStatements: true,
-  host: `${DB_HOST}`,
-  database: `${DB_NAME}`,
-  user: `${DB_USER}`,
-  password: `${DB_PASS}`,
-});
-
-con.connect((err) => {
+pool.connect((err) => {
   if (err) {
     logger.error(err);
     throw err;
