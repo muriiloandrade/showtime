@@ -6,7 +6,7 @@ const options: LoggerOptions = {
   format: format.combine(
     format.timestamp({ format: 'DD-MM-YY HH:mm:ss' }),
     format.colorize(),
-    format.printf(info => `[${info.timestamp}] [${info.level}]: ${info.message}`),
+    format.printf((info) => `[${info.timestamp}] [${info.level}]: ${info.message}`),
   ),
   transports: [
     new transports.Console({

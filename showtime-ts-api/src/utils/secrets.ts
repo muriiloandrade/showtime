@@ -43,6 +43,20 @@ if (!DB_PASS) {
   process.exit(1);
 }
 
+export const { THEMVDBAPIKEY } = process.env;
+
+if (!THEMVDBAPIKEY) {
+  logger.error('No TheMovieDB API Key provided. Set THEMVDBAPIKEY environment variable.');
+  process.exit(1);
+}
+
+export const { BOOKSAPI } = process.env;
+
+if (!BOOKSAPI) {
+  logger.error('No Google Books API Key provided. Set BOOKSAPI environment variable.');
+  process.exit(1);
+}
+
 export const CERT = prod ? process.env.CERT : process.env.LOCAL_CERT;
 
 if (!CERT) {

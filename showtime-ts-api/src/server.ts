@@ -1,5 +1,6 @@
 import https from 'https';
 import fs from 'fs';
+import { PoolConnection, QueryError, RowDataPacket } from 'mysql2';
 import logger from './utils/logger';
 import {
   CERT, CERT_KEY, CERT_PASS,
@@ -16,7 +17,14 @@ const httpsOptions = {
   passphrase: `${CERT_PASS}`,
 };
 
-pool.connect((err) => {
+pool.getConnection((err, conn: PoolConnection) => {
+  // Setando a timezone do banco como a timezone do Brasil
+  conn.query('SET time_zone = "-03:00"', (qerr: QueryError, rows: RowDataPacket[]) => {
+    if (qerr) { logger.error('Não foi possível alterar a timezone do banco!'); }
+
+    if (rows[0].affectedRows === 0) { logger.info('Timezone alterada com sucesso!'); }
+  });
+
   if (err) {
     logger.error(err);
     throw err;

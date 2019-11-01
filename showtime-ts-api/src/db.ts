@@ -1,4 +1,6 @@
-import { createPool, Pool } from 'mysql2';
+import {
+  createPool, Pool,
+} from 'mysql2';
 import {
   DB_HOST, DB_NAME, DB_USER, DB_PASS,
 } from './utils/secrets';
