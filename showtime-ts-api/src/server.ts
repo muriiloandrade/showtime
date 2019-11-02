@@ -30,7 +30,7 @@ const dbConfig: Configuration = {
 const db = new Database(dbConfig);
 
 // Cria uma pool de conexões
-db.createPool();
+db.getPool();
 
 db.getConnectionFromPool().then((conn?: PoolConnection) => {
   if (conn) {

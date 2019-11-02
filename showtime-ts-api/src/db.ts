@@ -23,7 +23,7 @@ export default class Database {
     this.config = config;
   }
 
-  public async createPool(): Promise<Pool> {
+  public async getPool() {
     if (!this.pool) {
       this.pool = await createPool({
         connectTimeout: this.config.connectTimeout,
@@ -38,7 +38,7 @@ export default class Database {
   }
 
   public async getConnectionFromPool() {
-    await this.createPool().then((pool) => {
+    await this.getPool().then((pool) => {
       pool.getConnection().then((conn) => {
         this.connection = conn;
       });
@@ -46,7 +46,7 @@ export default class Database {
     return this.connection;
   }
 
-  public async beginTransaction(): Promise<void> {
+  public async beginTransaction() {
     await this.getConnectionFromPool().then((conn) => {
       if (conn) conn.beginTransaction();
     }, (err) => {
