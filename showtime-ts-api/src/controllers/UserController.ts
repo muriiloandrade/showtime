@@ -1,19 +1,16 @@
-/* eslint-disable class-methods-use-this */
 import { Request, Response } from 'express';
 import UsersDAO from '../dao/UsersDAO';
 import { User, Perfil } from '../models/Users/UserEntity';
-import Database from '../db';
-import dbConfig from '../utils/dbConfig';
+import pool from '../db';
 
 // eslint-disable-next-line import/prefer-default-export
 export class UserController {
-  public async create(req: Request, res: Response) {
-    const DAO = new UsersDAO(new Database(dbConfig));
-
+  public static async create(req: Request, res: Response) {
+    const conn = await pool.getConnection();
     const createUsuarioDTO: User = req.body;
     const createPerfilDTO: Perfil = req.body;
 
-    const novoUsuario = await DAO.createUser(createUsuarioDTO, createPerfilDTO);
+    const novoUsuario = await new UsersDAO(conn).createUser(createUsuarioDTO, createPerfilDTO);
 
     res.json(novoUsuario);
   }

@@ -1,6 +1,7 @@
 import {
   createPool, Pool, PoolConnection,
 } from 'mysql2/promise';
+import dbConfig from './utils/dbConfig';
 
 export interface Configuration {
   host: string
@@ -14,15 +15,16 @@ export interface Configuration {
   ssl: string
 }
 
-export default class Database {
-  private pool?: Pool;
+class Database {
+  public pool: Pool;
 
   private connection?: PoolConnection;
 
   private config: Configuration
 
-  constructor(config: Configuration) {
+  public constructor(config: Configuration) {
     this.config = config;
+    this.pool = this.getPool();
   }
 
   public getPool() {
@@ -41,14 +43,6 @@ export default class Database {
     }
     return this.pool;
   }
-
-  public async getConnectionFromPool() {
-    const pool = this.getPool();
-
-    if (!this.connection) {
-      this.connection = await pool.getConnection();
-    }
-
-    return this.connection;
-  }
 }
+
+export default new Database(dbConfig).pool;
