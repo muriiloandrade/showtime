@@ -4,6 +4,7 @@ import compression from 'compression';
 import morgan from 'morgan';
 import userRoutes from './routes/userRoutes';
 import logger from './utils/logger';
+import cors from 'cors';
 
 class App {
   public app: Application
@@ -20,6 +21,7 @@ class App {
     this.app.use(helmet());
     this.app.use(compression());
     this.app.set('port', process.env.PORT || 3333);
+    this.app.use(cors());
     this.app.use((req, res, next) => {
       if (!req.secure) {
         res.redirect(`https://${req.hostname}:${process.env.PORT + req.url}`);
