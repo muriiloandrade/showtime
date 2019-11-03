@@ -1,16 +1,15 @@
 import https from 'https';
 import fs from 'fs';
-import { PoolConnection } from 'mysql2/promise';
 import logger from './utils/logger';
 import {
   CERT, CERT_KEY, CERT_PASS,
-  DB_HOST, DB_NAME, DB_PASS, DB_USER,
 } from './utils/secrets';
 
 import app from './app';
 
 // Connection with the database
-import Database, { Configuration } from './db';
+import Database from './db';
+import dbConfig from './utils/dbConfig';
 
 const httpsOptions = {
   cert: fs.readFileSync(`${CERT}`),
@@ -18,30 +17,23 @@ const httpsOptions = {
   passphrase: `${CERT_PASS}`,
 };
 
-const dbConfig: Configuration = {
-  connectTimeout: 60000,
-  multipleStatements: true,
-  database: `${DB_NAME}`,
-  host: `${DB_HOST}`,
-  user: `${DB_USER}`,
-  password: `${DB_PASS}`,
-};
-
 const db = new Database(dbConfig);
 
 // Cria uma pool de conexões
 db.getPool();
 
-db.getConnectionFromPool().then((conn?: PoolConnection) => {
+db.getConnectionFromPool().then((conn) => {
   if (conn) {
     // Setando a timezone do banco como a timezone do Brasil
-    conn.query('SET time_zone = "-03:00"').then((rows) => {
-      if (rows[1].values.length === 0) {
-        logger.info('Timezone alterada com sucesso!');
-      }
-    }, (qerr) => {
-      if (qerr) { logger.error('Não foi possível alterar a timezone do banco!'); }
-    });
+    conn.query('SET time_zone = "-03:00"')
+      .then((rows) => {
+        if (rows[0].stateChanges.systemVariables.time_zone === '-03:00') {
+          logger.info('Timezone alterada com sucesso!');
+        }
+      })
+      .catch((err) => {
+        if (err) { logger.error('Não foi possível alterar a timezone do banco!'); }
+      });
 
     logger.info('MySQL up and running!');
     https.createServer(httpsOptions, app)

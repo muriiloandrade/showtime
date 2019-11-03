@@ -4,7 +4,24 @@ export interface User {
   username: string;
   email: string;
   password_hash: string;
-  created_at: Date;
-  modified_at: Date;
-// eslint-disable-next-line semi
+  created_at?: Date;
+  modified_at?: Date;
+}
+
+export interface Perfil {
+  id?: number;
+  id_usuario?: number;
+  genero: number;
+  estado: number;
+  apelido?: string;
+  nome: string;
+  foto?: string;
+  website?: string;
+  created_at?: Date;
+  modified_at?: Date;
+}
+
+export interface CreateUser extends User, Perfil {
+  user: User;
+  perfil: Perfil;
 }

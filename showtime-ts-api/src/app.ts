@@ -1,7 +1,8 @@
 import express, { Application } from 'express';
 import helmet from 'helmet';
 import compression from 'compression';
-// import userRoutes from './routes/userRoutes';
+import morgan from 'morgan';
+import userRoutes from './routes/userRoutes';
 import logger from './utils/logger';
 
 class App {
@@ -25,11 +26,12 @@ class App {
       }
       next();
     });
+    this.app.use(morgan('dev'));
     logger.info('Middlewares OK!');
   }
 
   private routes(): void {
-    // this.app.use('/user', userRoutes);
+    this.app.use('/user', userRoutes);
     this.app.get('/', (req, res) => {
       res.json({ message: 'Hello World' });
     });
