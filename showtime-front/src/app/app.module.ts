@@ -6,11 +6,13 @@ import { AppRoutingModule, RoutingComponents } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BootstrapModule } from "./bootstrap";
 import { FilmeService } from "./services/filme.service";
+import { RegisterComponent } from './componentes/register/register.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [AppComponent,RoutingComponents],
-  imports: [BrowserModule, AppRoutingModule, BootstrapModule, HttpClientModule],
+  declarations: [AppComponent,RoutingComponents, RegisterComponent],
+  imports: [BrowserModule, AppRoutingModule, BootstrapModule, HttpClientModule,ReactiveFormsModule],
   providers: [FilmeService],
   bootstrap: [AppComponent]
 })
