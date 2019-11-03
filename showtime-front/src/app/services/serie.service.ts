@@ -1,13 +1,13 @@
-import { Resultado } from './../models/filme';
-import { Injectable } from "@angular/core";
+import { Resultado } from './../models/serie';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { retry, catchError } from "rxjs/operators";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
-export class FilmeService {
+export class SerieService {
   private baseApiPath = "https://api.themoviedb.org/3";
   private getApiKey ="835003cab26ff0669db7cbcd0de43a6a";
   constructor(private http: HttpClient) {}
@@ -20,9 +20,9 @@ export class FilmeService {
   };
   // https://api.themoviedb.org/3/search/movie?api_key=835003cab26ff0669db7cbcd0de43a6a&language=pt_BR&query=estrelas
   // GET
-  getLatestFilmes(): Observable<Resultado> {
+  getLatestSeries(): Observable<Resultado> {
     return this.http
-      .get<Resultado>(`${this.baseApiPath}/search/movie?api_key=${this.getApiKey}&language=pt_BR&query=estrelas`)
+      .get<Resultado>(`${this.baseApiPath}/tv/popular?api_key=${this.getApiKey}&language=pt_BR`)
       .pipe(
         retry(1),
         catchError(this.errorHandl)

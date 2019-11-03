@@ -1,0 +1,18 @@
+<div class="container wrapper">
+  <div class="row">
+    <!-- Issue table -->
+    <div class="col-md-12">
+      <div class="inner">
+        <table class="table table-bordered">
+          <tbody>
+            <tr *ngFor="let issues of lista_filmes">
+              <td>{{ issues.title }}</td>
+              <td>{{ issues.overview}}</td>
+              <img *ngIf="issues.backdrop_path" [src]="'https://image.tmdb.org/t/p/w300/'+issues.backdrop_path">
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

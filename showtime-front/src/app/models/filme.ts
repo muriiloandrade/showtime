@@ -1,5 +1,9 @@
-export class Filmes {
+export interface Filmes {
   id: number;
-  name: string;
-  email: string;
+  title: string;
+  overview: string;
+  backdrop_path: string;
+}
+export interface Resultado{
+  results: Filmes[];
 }
