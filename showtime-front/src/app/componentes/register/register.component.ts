@@ -1,8 +1,10 @@
 import { Usuario } from "./../../models/usuario";
 import { Component, OnInit } from "@angular/core";
 import { UsuarioService } from "src/app/services/usuario.service";
-import { FormGroup } from "@angular/forms";
-import { FormBuilder } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { AlertService } from "src/app/services/alert.service";
+import { Router } from "@angular/router";
+import { first } from "rxjs/operators";
 
 @Component({
   selector: "app-register",
@@ -13,10 +15,13 @@ export class RegisterComponent implements OnInit {
   usuarioAtual: Usuario;
   usuarios = [];
   registrationForm: FormGroup;
+  submitted = false;
 
   constructor(
     private fb: FormBuilder,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private alertService: AlertService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -35,11 +40,25 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
+
+    if (this.registrationForm.invalid) {
+      return;
+    }
     this.usuarioService
       .register(this.registrationForm.value)
+      .pipe(first())
       .subscribe(
-        response => console.log("Success!", response),
-        error => console.error("Error!", error)
+        data => {
+          this.alertService.success("Usuario Registrado", true);
+          //this.router.navigate([""]);
+          console.log("sucesso");
+        },
+        error => {
+          this.alertService.error(error);
+          this.router.navigate([""]);
+          console.log("falha");
+        }
       );
   }
 }

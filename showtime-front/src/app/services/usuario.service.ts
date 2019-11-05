@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Usuario } from "../models/usuario";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
-
 export class UsuarioService {
   private api_url = "https://localhost:5555/user";
 
-  constructor(public http:HttpClient) { }
+  constructor(public http: HttpClient) {}
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -16,8 +16,8 @@ export class UsuarioService {
     })
   };
 
-  register(userData) {
-    return this.http.post<any>(`${this.api_url}/register`, userData);
+  register(usuario: Usuario) {
+    return this.http.post<any>(`${this.api_url}/register`, usuario);
   }
 
   login(email: string, password: string, username: string) {
@@ -25,7 +25,7 @@ export class UsuarioService {
       var data = {
         email: email,
         password: password,
-        username: username,
+        username: username
       };
 
       this.http.post(`${this.api_url}/login`, data).subscribe(
