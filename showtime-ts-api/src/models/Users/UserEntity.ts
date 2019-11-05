@@ -1,3 +1,5 @@
+import { RowDataPacket } from 'mysql2';
+
 /* eslint-disable @typescript-eslint/camelcase */
 export interface User {
   id?: number;
@@ -21,7 +23,6 @@ export interface Perfil {
   modified_at?: Date;
 }
 
-export interface CreateUser extends User, Perfil {
-  user: User;
-  perfil: Perfil;
+export interface CheckUser extends RowDataPacket {
+  match: number;
 }

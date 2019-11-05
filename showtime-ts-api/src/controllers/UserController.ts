@@ -1,17 +1,28 @@
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable @typescript-eslint/camelcase */
 import { Request, Response } from 'express';
+import bcryptjs from 'bcryptjs';
 import UsersDAO from '../dao/UsersDAO';
 import { User, Perfil } from '../models/Users/UserEntity';
 import pool from '../db';
 
-// eslint-disable-next-line import/prefer-default-export
+
 export class UserController {
   public static async create(req: Request, res: Response) {
-    const conn = await pool.getConnection();
     const createUsuarioDTO: User = req.body;
     const createPerfilDTO: Perfil = req.body;
+    createUsuarioDTO.password_hash = await bcryptjs.hash(createUsuarioDTO.password_hash, 10);
 
-    const novoUsuario = await new UsersDAO(conn).createUser(createUsuarioDTO, createPerfilDTO);
+    const novoUsuario = await new UsersDAO(pool).createUser(createUsuarioDTO, createPerfilDTO);
 
     res.json(novoUsuario);
+  }
+
+  public static async searchForUser(req: Request, res: Response) {
+    const createUsuarioDTO: User = req.body;
+    const userExists = await new UsersDAO(pool)
+      .checkUserExists(createUsuarioDTO.username);
+
+    res.json(userExists);
   }
 }
