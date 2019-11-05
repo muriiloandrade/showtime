@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FilmeService } from "src/app/services/filme.service";
-import { Filmes } from 'src/app/models/filme';
+import { Filmes } from "src/app/models/filme";
 
 @Component({
   selector: "app-filmes",
@@ -8,7 +8,7 @@ import { Filmes } from 'src/app/models/filme';
   styleUrls: ["./filmes.component.css"]
 })
 export class FilmesComponent implements OnInit {
-  lista_filmes:Filmes[];
+  lista_filmes: Filmes[];
   constructor(public filmeService: FilmeService) {}
 
   ngOnInit() {
@@ -16,13 +16,14 @@ export class FilmesComponent implements OnInit {
   }
   getFilmes() {
     this.filmeService.getLatestFilmes().subscribe(
-      data=>{
-        const response = (data);
-        this.lista_filmes=response.results;
-        console.log(response.results)
-      },error =>{
+      data => {
+        const response = data;
+        this.lista_filmes = response.results;
+        console.log(response.results);
+      },
+      error => {
         console.log(error);
       }
-    )
+    );
   }
 }

@@ -1,4 +1,4 @@
-import { Resultado } from './../models/filme';
+import { Resultado } from "./../models/filme";
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
@@ -9,7 +9,7 @@ import { retry, catchError } from "rxjs/operators";
 })
 export class FilmeService {
   private baseApiPath = "https://api.themoviedb.org/3";
-  private getApiKey ="835003cab26ff0669db7cbcd0de43a6a";
+  private getApiKey = "835003cab26ff0669db7cbcd0de43a6a";
   constructor(private http: HttpClient) {}
 
   // Http Headers
@@ -22,7 +22,9 @@ export class FilmeService {
   // GET
   getLatestFilmes(): Observable<Resultado> {
     return this.http
-      .get<Resultado>(`${this.baseApiPath}/search/movie?api_key=${this.getApiKey}&language=pt_BR&query=estrelas`)
+      .get<Resultado>(
+        `${this.baseApiPath}/search/movie?api_key=${this.getApiKey}&language=pt_BR&query=estrelas`
+      )
       .pipe(
         retry(1),
         catchError(this.errorHandl)

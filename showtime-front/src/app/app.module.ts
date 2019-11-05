@@ -4,15 +4,22 @@ import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule, RoutingComponents } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { BootstrapModule } from "./bootstrap";
 import { FilmeService } from "./services/filme.service";
-import { RegisterComponent } from './componentes/register/register.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { RegisterComponent } from "./componentes/register/register.component";
+import { ReactiveFormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MaterialModule } from "./material";
 
 @NgModule({
-  declarations: [AppComponent,RoutingComponents, RegisterComponent],
-  imports: [BrowserModule, AppRoutingModule, BootstrapModule, HttpClientModule,ReactiveFormsModule],
+  declarations: [AppComponent, RoutingComponents, RegisterComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MaterialModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule
+  ],
   providers: [FilmeService],
   bootstrap: [AppComponent]
 })
