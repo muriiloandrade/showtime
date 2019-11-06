@@ -20,22 +20,7 @@ export class UsuarioService {
     return this.http.post<any>(`${this.api_url}/register`, usuario);
   }
 
-  login(email: string, password: string, username: string) {
-    return new Promise((resolve, reject) => {
-      var data = {
-        email: email,
-        password: password,
-        username: username
-      };
-
-      this.http.post(`${this.api_url}/login`, data).subscribe(
-        (result: any) => {
-          resolve(result.json());
-        },
-        error => {
-          reject(error.json());
-        }
-      );
-    });
+  login(usuario: Usuario) {
+    return this.http.post<any>(`${this.api_url}/login`, usuario);
   }
 }
