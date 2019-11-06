@@ -64,4 +64,44 @@ export default class UsersDAO {
       conn.release();
     }
   }
+
+  public async updateUser(perfil: Perfil) {
+    const conn = await this.pool.getConnection();
+    let affectedRows;
+    try {
+      if (await this.checkUserExists()) {
+        await conn.beginTransaction();
+        const query = `UPDATE tb_perfil SET 
+          id_pessoa_genero = :id_pessoa_genero,
+          id_estado = :id_estado,
+          tex_apelido = :tex_apelido,
+          tex_nome = :tex_nome,
+          tex_foto = :tex_foto,
+          tex_website = :tex_website
+        WHERE id_usuario = :id_usuario`;
+
+        const [rows] = await conn
+          .query(query, {
+            id_pessoa_genero: perfil.genero,
+            id_estado: perfil.estado,
+            tex_apelido: perfil.apelido,
+            tex_nome: perfil.nome,
+            tex_foto: perfil.foto,
+            tex_website: perfil.website,
+            id_usuario: perfil.id_usuario,
+          });
+        conn.commit();
+        affectedRows = {
+          updated: (rows as OkPacket).affectedRows,
+        };
+      }
+      return affectedRows;
+    } catch (error) {
+      logger.info(`Erro ao atualizar o perfil do usuário ${perfil.id}\n${error}`);
+      conn.rollback();
+      return JSON.parse('{}');
+    } finally {
+      conn.release();
+    }
+  }
 }

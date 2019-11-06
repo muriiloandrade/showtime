@@ -25,4 +25,12 @@ export class UserController {
 
     res.json(userExists);
   }
+
+  public static async updateUser(req: Request, res: Response) {
+    const updatePerfilDTO: Perfil = req.body;
+
+    const updatePerfil = await new UsersDAO(pool).updateUser(updatePerfilDTO);
+
+    res.json(updatePerfil);
+  }
 }

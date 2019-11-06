@@ -2,9 +2,9 @@ import express, { Application } from 'express';
 import helmet from 'helmet';
 import compression from 'compression';
 import morgan from 'morgan';
+import cors from 'cors';
 import userRoutes from './routes/userRoutes';
 import logger from './utils/logger';
-import cors from 'cors';
 
 class App {
   public app: Application
