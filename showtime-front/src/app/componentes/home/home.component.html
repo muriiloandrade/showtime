@@ -1,0 +1,82 @@
+<!-- <img src="../../../assets/Showtime_logo.png" alt="Logo" /> -->
+<span><img src="../../../assets/Showtime_logo.png" style="width:200px;"/></span>
+<div>
+  <mat-toolbar color="primary" class="fixed-header">
+    <mat-toolbar-row>
+      <a mat-button routerLink="" routerLinkActive="active">Series</a>
+      <a mat-button routerLink="">Filmes</a>
+      <a mat-button routerLink="">Livros</a>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+<div
+  *ngFor="let filmes of lista_filmes"
+  class="container"
+  fxLayout
+  fxLayoutGap="5%"
+  fxLayout="row"
+  fxLayoutAlign="center"
+  fxFlexAlign="auto"
+  fxLayoutGap.xs="0"
+>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{ filmes.title }}</mat-card-title>
+    </mat-card-header>
+    <img
+      mat-card-image
+      [src]="'https://image.tmdb.org/t/p/w300/' + filmes.poster_path"
+      onerror="this.src = '../../../assets/noimg.png' "
+    />
+    <mat-card-content>
+      <p>
+        {{ filmes.overview }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-icon-button>
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon>share</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<div
+  *ngFor="let series of lista_series"
+  class="container"
+  fxLayout
+  fxLayoutGap="5%"
+  fxLayout="row"
+  fxLayoutAlign="center"
+  fxFlexAlign="auto"
+  fxLayoutGap.xs="0"
+>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{ series.title }}</mat-card-title>
+    </mat-card-header>
+    <img
+      mat-card-image
+      [src]="'https://image.tmdb.org/t/p/w300/' + series.poster_path"
+      onerror="this.src = '../../../assets/noimg.png' "
+    />
+    <mat-card-content>
+      <p>
+        {{ series.overview }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-icon-button>
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon>share</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

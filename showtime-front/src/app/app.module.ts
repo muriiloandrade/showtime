@@ -10,6 +10,7 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MaterialModule } from "./material";
 import { AlertComponent } from "./componentes/alert/alert/alert.component";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AlertComponent } from "./componentes/alert/alert/alert.component";
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    FlexLayoutModule
   ],
   entryComponents: [RegisterComponent],
   providers: [FilmeService],

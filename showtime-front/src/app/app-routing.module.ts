@@ -7,7 +7,7 @@ import { HomeComponent } from "./componentes/home/home.component";
 import { LoginComponent } from "./componentes/login/login.component";
 
 const routes: Routes = [
-  { path: "", component: FilmesComponent },
+  { path: "", component: HomeComponent },
   { path: "serie", component: SeriesComponent },
   { path: "cadastrar", component: RegisterComponent },
   { path: "login", component: LoginComponent },

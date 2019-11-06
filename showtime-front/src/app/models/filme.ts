@@ -1,9 +1,9 @@
-export interface Filmes {
+export interface Filme {
   id: number;
   title: string;
   overview: string;
-  backdrop_path: string;
+  poster_path: string;
 }
-export interface Resultado{
-  results: Filmes[];
+export interface Resultado {
+  results: Filme[];
 }

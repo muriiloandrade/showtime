@@ -9,6 +9,7 @@ import { retry, catchError } from "rxjs/operators";
 })
 export class FilmeService {
   private baseApiPath = "https://api.themoviedb.org/3";
+
   private getApiKey = "835003cab26ff0669db7cbcd0de43a6a";
   constructor(private http: HttpClient) {}
 
@@ -18,12 +19,23 @@ export class FilmeService {
       "Content-Type": "application/json"
     })
   };
-  // https://api.themoviedb.org/3/search/movie?api_key=835003cab26ff0669db7cbcd0de43a6a&language=pt_BR&query=estrelas
+
   // GET
   getLatestFilmes(): Observable<Resultado> {
     return this.http
       .get<Resultado>(
-        `${this.baseApiPath}/search/movie?api_key=${this.getApiKey}&language=pt_BR&query=estrelas`
+        `${this.baseApiPath}/search/movie?api_key=${this.getApiKey}&language=pt_BR&query=cidade`
+      )
+      .pipe(
+        retry(1),
+        catchError(this.errorHandl)
+      );
+  }
+  // Get
+  get5PopFilmes(): Observable<Resultado> {
+    return this.http
+      .get<Resultado>(
+        `${this.baseApiPath}/movie/popular?api_key=${this.getApiKey}&language=pt_BR&page=1`
       )
       .pipe(
         retry(1),
