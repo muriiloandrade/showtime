@@ -1,31 +1,20 @@
-<div class="container wrapper">
-  <div class="row">
-    <!-- Issue table -->
-    <div class="col-md-12">
-      <div class="inner">
-        <h3>My Issues</h3>
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Issue Name</th>
-              <th scope="col">Issue Details</th>
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let issues of lista_series">
-              <td>{{ issues.name }}</td>
-              <td>{{ issues.overview }}</td>
-              <img
-                [src]="
+<mat-card class="example-card" *ngFor="let issues of lista_series">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{ issues.name }}</mat-card-title>
+  </mat-card-header>
+  <img *ngIf="issues.backdrop_path" [src]="
                   'https://image.tmdb.org/t/p/w300/' + issues.backdrop_path
-                "
-              />
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
+                " />
+  <mat-card-content>
+    {{issues.overview}}
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-icon-button>
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>share</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
