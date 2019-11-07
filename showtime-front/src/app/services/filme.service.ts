@@ -24,7 +24,7 @@ export class FilmeService {
   getLatestFilmes(): Observable<Resultado> {
     return this.http
       .get<Resultado>(
-        `${this.baseApiPath}/search/movie?api_key=${this.getApiKey}&language=pt_BR&query=cidade`
+        `${this.baseApiPath}/movie/popular?api_key=${this.getApiKey}&language=pt_BR`
       )
       .pipe(
         retry(1),

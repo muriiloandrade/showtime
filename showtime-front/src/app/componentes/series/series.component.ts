@@ -15,7 +15,7 @@ export class SeriesComponent implements OnInit {
   constructor(public serieService: SerieService) {}
 
   ngOnInit() {
-    this.getSeries();
+    this.get5PopSeries();
   }
   getSeries() {
     this.serieService.getLatestSeries().subscribe(
@@ -23,6 +23,18 @@ export class SeriesComponent implements OnInit {
         const response = data as Resultado;
         this.lista_series = response.results;
         console.log(response.results);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  get5PopSeries() {
+    this.serieService.get5PopSeries().subscribe(
+      data => {
+        const response = data;
+        this.lista_series = response.results.slice(0, 5);
+        console.log(response.results.slice(0, 5));
       },
       error => {
         console.log(error);

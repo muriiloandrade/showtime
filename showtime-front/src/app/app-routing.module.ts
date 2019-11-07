@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: "serie", component: SeriesComponent },
   { path: "cadastrar", component: RegisterComponent },
   { path: "login", component: LoginComponent },
+  { path: "filme", component: FilmesComponent },
 
   { path: "**", redirectTo: "" }
 ];

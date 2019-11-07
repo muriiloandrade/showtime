@@ -12,4 +12,14 @@ example-card {
     max-width: 500px;
     
    }
+   
+   :host {
+    display: flex;
+    justify-content: center;
+    margin: 100px 0px;
+  }
+  
+  .noimg {
+    background-image: url(../../../assets/noimg.png);
+  }
   
