@@ -1,3 +1,4 @@
+import { MaterializeModule } from './materialize';
 import { LoginComponent } from "./componentes/login/login.component";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
@@ -27,6 +28,7 @@ import { AlertComponent } from "./componentes/alert/alert/alert.component";
     ReactiveFormsModule,
     BrowserAnimationsModule,
     FormsModule,
+    MaterializeModule
     //FlexLayoutModule
   ],
   entryComponents: [RegisterComponent],
