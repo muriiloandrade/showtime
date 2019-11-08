@@ -38,8 +38,8 @@ export class HomeComponent implements OnInit {
     this.filmeService.get5PopFilmes().subscribe(
       data => {
         const response = data;
-        this.lista_filmes = response.results.slice(0, 6);
-        console.log(response.results.slice(0, 6));
+        this.lista_filmes = response.results.slice(0, 5);
+        console.log(response.results.slice(0, 5));
       },
       error => {
         console.log(error);
@@ -51,8 +51,8 @@ export class HomeComponent implements OnInit {
     this.serieService.get5PopSeries().subscribe(
       data => {
         const response = data;
-        this.lista_series = response.results.slice(0, 6);
-        console.log(response.results.slice(0, 6));
+        this.lista_series = response.results.slice(0, 5);
+        console.log(response.results.slice(0, 5));
       },
       error => {
         console.log(error);

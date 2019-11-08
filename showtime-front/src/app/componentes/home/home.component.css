@@ -1,14 +1,5 @@
-
 .noimg {
   background-image: url(../../../assets/noimg.png);
-}
-
-.example-card {
-  max-width: 300px;
-}
-
-.example-header-image {
-  background-size: cover;
 }
 
 ::ng-deep .mat-card {
@@ -16,9 +7,7 @@
   border: 1px solid rgb(206, 206, 206);
   max-width: 400px;
 }
-body{
-  margin: auto;
-  width: auto;
-  height: auto;
-  background-color: #141414;
+
+#center-row {
+  justify-content: center;
 }
