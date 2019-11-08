@@ -9,7 +9,6 @@ import { Serie } from "src/app/models/serie";
   styleUrls: ["./series.component.css"]
 })
 export class SeriesComponent implements OnInit {
-  IssuesList: any = [];
   lista_series: Serie[];
 
   constructor(public serieService: SerieService) {}

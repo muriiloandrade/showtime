@@ -1,16 +1,11 @@
-<mat-card
-  class="example-card"
-  *ngFor="let issues of lista_series"
-  style="text-align: center;"
-  fxFlex="10%"
->
+<mat-card class="example-card" *ngFor="let issues of lista_series">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>{{ issues.name }}</mat-card-title>
   </mat-card-header>
   <img
-    *ngIf="issues.backdrop_path"
-    [src]="'https://image.tmdb.org/t/p/w300/' + issues.backdrop_path"
+    [src]="'https://image.tmdb.org/t/p/w300/' + issues.poster_path"
+    onerror="this.src = '../../../assets/noimg.png' "
   />
   <mat-card-content>
     {{ issues.overview }}

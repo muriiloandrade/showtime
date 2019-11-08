@@ -1,25 +1,23 @@
-example-card {
-    max-width: 400px;
-  }
-  
-  .example-header-image {
-    background-size: cover;
-  }
+.example-card {
+  max-width: 300px;
+}
 
-  ::ng-deep .mat-card{
-    border-radius: 20px !important;
-    border: 1px solid rgb(206, 206, 206);
-    max-width: 500px;
-    
-   }
-   
-   :host {
-    display: flex;
-    justify-content: center;
-    margin: 100px 0px;
-  }
-  
-  .noimg {
-    background-image: url(../../../assets/noimg.png);
-  }
-  
+.example-header-image {
+  background-size: cover;
+}
+
+::ng-deep .mat-card {
+  border-radius: 20px !important;
+  border: 1px solid rgb(206, 206, 206);
+  max-width: 400px;
+}
+
+:host {
+  display: flex;
+  justify-content: center;
+  margin: 100px 0px;
+}
+
+.noimg {
+  background-image: url(../../../assets/noimg.png);
+}
