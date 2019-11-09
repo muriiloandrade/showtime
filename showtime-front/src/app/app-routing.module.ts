@@ -5,6 +5,7 @@ import { FilmesComponent } from "./componentes/filmes/filmes.component";
 import { RegisterComponent } from "./componentes/register/register.component";
 import { HomeComponent } from "./componentes/home/home.component";
 import { LoginComponent } from "./componentes/login/login.component";
+import { FilmeDetalheComponent } from "./componentes/filmes/filme-detalhe/filme-detalhe.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: "cadastrar", component: RegisterComponent },
   { path: "login", component: LoginComponent },
   { path: "filme", component: FilmesComponent },
+  { path: "filme/:id", component: FilmeDetalheComponent },
 
   { path: "**", redirectTo: "" }
 ];
@@ -26,5 +28,6 @@ export const RoutingComponents = [
   SeriesComponent,
   RegisterComponent,
   HomeComponent,
-  LoginComponent
+  LoginComponent,
+  FilmeDetalheComponent
 ];

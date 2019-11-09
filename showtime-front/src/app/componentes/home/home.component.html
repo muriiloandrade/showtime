@@ -38,6 +38,7 @@
           <h5>{{ filmes.title }}</h5>
         </div>
         <img
+          routerLink="/filme"
           class="img-fluid"
           [src]="'https://image.tmdb.org/t/p/w300/' + filmes.poster_path"
           onerror="this.src = '../../../assets/noimg.png' "
