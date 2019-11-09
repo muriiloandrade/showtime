@@ -10,7 +10,8 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MaterialModule } from "./material";
 import { AlertComponent } from "./componentes/alert/alert/alert.component";
-import { FilmeDetalheComponent } from './componentes/filmes/filme-detalhe/filme-detalhe.component';
+import { FilmeDetalheComponent } from "./componentes/filmes/filme-detalhe/filme-detalhe.component";
+import { LivrosComponent } from "./componentes/livros/livros.component";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FilmeDetalheComponent } from './componentes/filmes/filme-detalhe/filme-
     RoutingComponents,
     RegisterComponent,
     AlertComponent,
-    FilmeDetalheComponent
+    FilmeDetalheComponent,
+    LivrosComponent
   ],
   imports: [
     BrowserModule,

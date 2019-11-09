@@ -1,3 +1,4 @@
+import { LivrosComponent } from "./componentes/livros/livros.component";
 import { SeriesComponent } from "./componentes/series/series.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "filme", component: FilmesComponent },
   { path: "filme/:id", component: FilmeDetalheComponent },
+  { path: "livro", component: LivrosComponent },
 
   { path: "**", redirectTo: "" }
 ];
@@ -29,5 +31,6 @@ export const RoutingComponents = [
   RegisterComponent,
   HomeComponent,
   LoginComponent,
-  FilmeDetalheComponent
+  FilmeDetalheComponent,
+  LivrosComponent
 ];
