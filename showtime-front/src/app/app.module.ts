@@ -10,13 +10,15 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MaterialModule } from "./material";
 import { AlertComponent } from "./componentes/alert/alert/alert.component";
+import { LivrosComponent } from './componentes/livros/livros.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RoutingComponents,
     RegisterComponent,
-    AlertComponent
+    AlertComponent,
+    LivrosComponent
   ],
   imports: [
     BrowserModule,
