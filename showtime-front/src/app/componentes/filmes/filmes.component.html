@@ -1,21 +1,39 @@
-<mat-card class="FilmesComponent" *ngFor="let filmes of lista_filmes">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{ filmes.title }}</mat-card-title>
-  </mat-card-header>
-  <img
-    [src]="'https://image.tmdb.org/t/p/w300/' + filmes.poster_path"
-    onerror="this.src = '../../../assets/noimg.png' "
-  />
-  <mat-card-content>
-    {{ filmes.overview }}
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-icon-button>
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button>
-      <mat-icon>share</mat-icon>
-    </button>
-  </mat-card-actions>
-</mat-card>
+<div class="container-fluid my-3">
+  <div class="row" id="center-row">
+    <div class="col-12 col-md-2" *ngFor="let filmes of lista_filmes">
+      <div class="card border-dark">
+        <div class="card-header text-center text-truncate">
+          <h5>{{ filmes.title }}</h5>
+        </div>
+        <img
+          routerLink="/filme"
+          class="img-fluid"
+          [src]="'https://image.tmdb.org/t/p/w300/' + filmes.poster_path"
+          onerror="this.src = '../../../assets/noimg.png' "
+        />
+        <div class="card-body">
+          <p class="card-text text-truncate">{{ filmes.overview }}</p>
+        </div>
+
+        <div class="row justify-content-center mb-3">
+          <div
+            class="btn-group"
+            role="group"
+            aria-label="Button group with nested dropdown"
+          >
+            <button mat-flat-button color="warn">
+              <mat-icon>favorite</mat-icon>
+            </button>
+            <button
+              (click)="filmeDetalhe(filmes.id)"
+              mat-flat-button
+              class="border blue"
+            >
+              <mat-icon>share</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

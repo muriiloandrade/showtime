@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FilmeService } from "src/app/services/filme.service";
 import { Filme } from "src/app/models/filme";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-filmes",
@@ -10,7 +11,7 @@ import { Filme } from "src/app/models/filme";
 export class FilmesComponent implements OnInit {
   lista_filmes: Filme[];
 
-  constructor(public filmeService: FilmeService) {}
+  constructor(public filmeService: FilmeService, private router: Router) {}
 
   ngOnInit() {
     this.get5PopFilmes();
@@ -38,5 +39,9 @@ export class FilmesComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  filmeDetalhe(id: number) {
+    this.router.navigate(["filme", id]);
   }
 }

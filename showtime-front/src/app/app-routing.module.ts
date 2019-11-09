@@ -11,7 +11,7 @@ import { FilmeDetalheComponent } from "./componentes/filmes/filme-detalhe/filme-
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "serie", component: SeriesComponent },
-  { path: "cadastrar", component: RegisterComponent },
+  { path: "signup", component: RegisterComponent },
   { path: "login", component: LoginComponent },
   { path: "filme", component: FilmesComponent },
   { path: "filme/:id", component: FilmeDetalheComponent },

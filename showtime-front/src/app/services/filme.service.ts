@@ -1,4 +1,4 @@
-import { Resultado } from "./../models/filme";
+import { Resultado, FilmeDetalhe, FilmeCasting } from "./../models/filme";
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
@@ -31,11 +31,45 @@ export class FilmeService {
         catchError(this.errorHandl)
       );
   }
+
+  getFilmeDetalhe(filme_id): Observable<FilmeDetalhe> {
+    return this.http
+      .get<FilmeDetalhe>(
+        `${this.baseApiPath}/movie/${filme_id}?api_key=${this.getApiKey}&language=pt_BR`
+      )
+      .pipe(
+        retry(1),
+        catchError(this.errorHandl)
+      );
+  }
+
+  getCastDetalhe(filme_id): Observable<FilmeCasting> {
+    return this.http
+      .get<FilmeCasting>(
+        `${this.baseApiPath}/movie/${filme_id}/credits?api_key=${this.getApiKey}&language=pt_BR`
+      )
+      .pipe(
+        retry(1),
+        catchError(this.errorHandl)
+      );
+  }
+
   // Get
   get5PopFilmes(): Observable<Resultado> {
     return this.http
       .get<Resultado>(
         `${this.baseApiPath}/movie/popular?api_key=${this.getApiKey}&language=pt_BR&page=1`
+      )
+      .pipe(
+        retry(1),
+        catchError(this.errorHandl)
+      );
+  }
+
+  getFilmeRecomend(filme_id): Observable<Resultado> {
+    return this.http
+      .get<Resultado>(
+        `${this.baseApiPath}/movie/${filme_id}/recommendations?api_key=${this.getApiKey}&language=pt_BR`
       )
       .pipe(
         retry(1),

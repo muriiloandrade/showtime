@@ -1,0 +1,101 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <a class="navbar-brand" routerLink="/">Home</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/filme">Filmes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/serie">Series</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="">Livros</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container-fluid mt-2">
+  <div class="row" id="center-row">
+    <div class="w-100 card border-dark bg-secondary rounded-0">
+      <div class="card-header text-center">
+        <h5>
+          <strong
+            >{{ filme_detalhe.title }} ( {{ filme_detalhe.release_date }} )
+          </strong>
+        </h5>
+      </div>
+      <img
+        class="img-fluid"
+        [src]="
+          'https://image.tmdb.org/t/p/w1400_and_h450_face/' +
+          filme_detalhe.poster_path
+        "
+        onerror="this.src = '../../../assets/noimg.png' "
+      />
+      <div class="card-body">
+        <p class="card-text">
+          <strong>{{ filme_detalhe.overview }} </strong>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid my-3">
+  <div><h3 class="text-light">Estrelas do Filme</h3></div>
+  <div class="row" id="center-row">
+    <div class="col-12 col-md-1" *ngFor="let cast of filme_casting">
+      <div class="card border-dark">
+        <div class="card-header text-center text-truncate">
+          <h5>{{ cast.name }}</h5>
+        </div>
+        <img
+          class="img-fluid w-100"
+          [src]="'https://image.tmdb.org/t/p/w300/' + cast.profile_path"
+          onerror="this.src = '../../../assets/noimg.png' "
+        />
+        <div class="card-body">
+          <h6 class="card-text text-center">{{ cast.character }}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="card-group my-3">
+    <div><h3 class="text-light">Recomendações</h3></div>
+    <div class="row" id="center-row">
+      <div class="col-12 col-md-2" *ngFor="let recomend of lista_filmes">
+        <div class="card border-dark">
+          <div class="card-header text-center text-truncate">
+            <h5>{{ recomend.title }}</h5>
+          </div>
+          <img
+            data-size="auto"
+            class="img-fluid w-100"
+            [src]="'https://image.tmdb.org/t/p/w300/' + recomend.poster_path"
+            onerror="this.src = '../../../assets/noimg.png' "
+          />
+          <div class="card-body">
+            <h6 class="card-text text-center text-truncate">
+              {{ recomend.overview }}
+            </h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
