@@ -1,13 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { Filme } from "src/app/models/filme";
-import { FilmeService } from "src/app/services/filme.service";
-import { Serie } from "src/app/models/serie";
-import { SerieService } from "src/app/services/serie.service";
+import { Component, OnInit } from '@angular/core';
+import { Filme } from 'src/app/models/filme';
+import { FilmeService } from 'src/app/services/filme.service';
+import { Serie } from 'src/app/models/serie';
+import { SerieService } from 'src/app/services/serie.service';
 
 @Component({
-  selector: "app-home",
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"]
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
   lista_filmes: Filme[];

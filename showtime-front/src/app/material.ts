@@ -1,15 +1,15 @@
-import { NgModule } from "@angular/core";
-import { MatCardModule } from "@angular/material/card";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatSelectModule } from "@angular/material/select";
+import { NgModule } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import {
   MatSidenavModule,
   MatToolbarModule,
   MatIconModule,
   MatListModule,
   MatInputModule,
-  MatButtonModule
-} from "@angular/material";
+  MatButtonModule,
+} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -21,7 +21,7 @@ import {
     MatIconModule,
     MatListModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   exports: [
     MatCardModule,
@@ -33,7 +33,7 @@ import {
     MatIconModule,
     MatListModule,
     MatInputModule,
-    MatButtonModule
-  ]
+    MatButtonModule,
+  ],
 })
 export class MaterialModule {}

@@ -9,7 +9,7 @@ import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   usuarioAtual: Usuario;
@@ -22,12 +22,12 @@ export class LoginComponent implements OnInit {
     private usuarioService: UsuarioService,
     private alertService: AlertService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      username: ["", Validators.required],
-      password_hash: ["", Validators.required],
+      username: ['', Validators.required],
+      password_hash: ['', Validators.required],
     });
   }
   onSubmit() {
@@ -41,17 +41,15 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.alertService.success("Usuario Logado!", true);
+          this.alertService.success('Usuario Logado!', true);
           //this.router.navigate([""]);
-          console.log("sucesso");
+          console.log('sucesso');
         },
         error => {
           this.alertService.error(error);
-          this.router.navigate([""]);
-          console.log("falha");
+          this.router.navigate(['']);
+          console.log('falha');
         }
       );
   }
-  
-
 }

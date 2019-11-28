@@ -1,12 +1,12 @@
-import { Component, OnInit } from "@angular/core";
-import { Resultado } from "./../../models/serie";
-import { SerieService } from "src/app/services/serie.service";
-import { Serie } from "src/app/models/serie";
+import { Component, OnInit } from '@angular/core';
+import { Resultado } from './../../models/serie';
+import { SerieService } from 'src/app/services/serie.service';
+import { Serie } from 'src/app/models/serie';
 
 @Component({
-  selector: "app-series",
-  templateUrl: "./series.component.html",
-  styleUrls: ["./series.component.css"]
+  selector: 'app-series',
+  templateUrl: './series.component.html',
+  styleUrls: ['./series.component.css'],
 })
 export class SeriesComponent implements OnInit {
   lista_series: Serie[];

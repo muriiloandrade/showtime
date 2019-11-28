@@ -1,12 +1,12 @@
-import { Component, OnInit } from "@angular/core";
-import { FilmeService } from "src/app/services/filme.service";
-import { Filme } from "src/app/models/filme";
-import { Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { FilmeService } from 'src/app/services/filme.service';
+import { Filme } from 'src/app/models/filme';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: "app-filmes",
-  templateUrl: "./filmes.component.html",
-  styleUrls: ["./filmes.component.css"]
+  selector: 'app-filmes',
+  templateUrl: './filmes.component.html',
+  styleUrls: ['./filmes.component.css'],
 })
 export class FilmesComponent implements OnInit {
   lista_filmes: Filme[];
@@ -42,6 +42,6 @@ export class FilmesComponent implements OnInit {
   }
 
   filmeDetalhe(id: number) {
-    this.router.navigate(["filme", id]);
+    this.router.navigate(['filme', id]);
   }
 }

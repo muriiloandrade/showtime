@@ -1,12 +1,12 @@
-import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
-import { FilmeService } from "src/app/services/filme.service";
-import { FilmeDetalhe, Cast, Filme } from "src/app/models/filme";
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FilmeService } from 'src/app/services/filme.service';
+import { FilmeDetalhe, Cast, Filme } from 'src/app/models/filme';
 
 @Component({
-  selector: "app-filme-detalhe",
-  templateUrl: "./filme-detalhe.component.html",
-  styleUrls: ["./filme-detalhe.component.css"]
+  selector: 'app-filme-detalhe',
+  templateUrl: './filme-detalhe.component.html',
+  styleUrls: ['./filme-detalhe.component.css'],
 })
 export class FilmeDetalheComponent implements OnInit {
   filme_detalhe: FilmeDetalhe;
@@ -26,7 +26,7 @@ export class FilmeDetalheComponent implements OnInit {
   }
 
   getFilmeDetalhe() {
-    this.id = this.route.snapshot.params["id"];
+    this.id = this.route.snapshot.params['id'];
 
     this.filmeService.getFilmeDetalhe(this.id).subscribe(
       data => {
@@ -40,7 +40,7 @@ export class FilmeDetalheComponent implements OnInit {
   }
 
   get5CastingFilmes() {
-    this.id = this.route.snapshot.params["id"];
+    this.id = this.route.snapshot.params['id'];
 
     this.filmeService.getCastDetalhe(this.id).subscribe(
       data => {
@@ -55,7 +55,7 @@ export class FilmeDetalheComponent implements OnInit {
   }
 
   getFilmeRecomend() {
-    this.id = this.route.snapshot.params["id"];
+    this.id = this.route.snapshot.params['id'];
 
     this.filmeService.getFilmeRecomend(this.id).subscribe(
       data => {

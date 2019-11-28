@@ -1,23 +1,24 @@
-import { Resultado } from "./../models/livro";
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
-import { retry, catchError } from "rxjs/operators";
+import { Resultado } from './../models/livro';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { retry, catchError } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LivroService {
-  private baseApiPath = "https://www.googleapis.com/books/v1";
-  private linkteste ="https://www.googleapis.com/books/v1/volumes?q='search+terms'"
+  private baseApiPath = 'https://www.googleapis.com/books/v1';
+  private linkteste =
+    "https://www.googleapis.com/books/v1/volumes?q='search+terms'";
 
-  private getApiKey = "AIzaSyC9nGLybxMviiKWZYL1aXDASpc0I-kiqDw";
+  private getApiKey = 'AIzaSyC9nGLybxMviiKWZYL1aXDASpc0I-kiqDw';
   constructor(private http: HttpClient) {}
-  
+
   httpOptions = {
     headers: new HttpHeaders({
-      "Content-Type": "application/json"
-    })
+      'Content-Type': 'application/json',
+    }),
   };
 
   getAllLivros(): Observable<Resultado> {
@@ -26,13 +27,10 @@ export class LivroService {
         //`${this.baseApiPath}//?api_key=${this.getApiKey}&language=pt_BR`
         `${this.linkteste}`
       )
-      .pipe(
-        retry(1),
-        catchError(this.errorHandl)
-      );
+      .pipe(retry(1), catchError(this.errorHandl));
   }
 
-  errorHandl(errorHandl: any): import("rxjs").OperatorFunction<Resultado, any> {
-    throw new Error("Method not implemented.");
+  errorHandl(errorHandl: any): import('rxjs').OperatorFunction<Resultado, any> {
+    throw new Error('Method not implemented.');
   }
 }

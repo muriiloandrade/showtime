@@ -1,10 +1,9 @@
 export interface Livro {
-    volumeInfo: Infos;
+  volumeInfo: Infos;
 }
 export interface Resultado {
-    items: Livro[];
+  items: Livro[];
 }
-export interface Infos{
-    title: string;
+export interface Infos {
+  title: string;
 }
-  
