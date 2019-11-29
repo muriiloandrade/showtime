@@ -1,16 +1,12 @@
 import { AppPage } from './app.po';
 import { browser, logging } from 'protractor';
+import 'jasmine';
 
 describe('workspace-project App', () => {
   let page: AppPage;
 
   beforeEach(() => {
     page = new AppPage();
-  });
-
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getTitleText()).toEqual('showtime-front app is running!');
   });
 
   afterEach(async () => {
