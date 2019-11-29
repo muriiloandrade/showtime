@@ -43,6 +43,13 @@ if (!DB_PASS) {
   process.exit(1);
 }
 
+export const { SES_SECRET } = process.env;
+
+if (!SES_SECRET) {
+  logger.error('No session secret key provided. Set SES_SECRET environment variable.');
+  process.exit(1);
+}
+
 export const { THEMVDBAPIKEY } = process.env;
 
 if (!THEMVDBAPIKEY) {

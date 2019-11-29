@@ -2,7 +2,7 @@ import { RowDataPacket } from 'mysql2';
 
 /* eslint-disable @typescript-eslint/camelcase */
 export interface User {
-  id?: number;
+  id_usuario?: number;
   username: string;
   email: string;
   password_hash: string;
@@ -11,7 +11,7 @@ export interface User {
 }
 
 export interface Perfil {
-  id?: number;
+  id_perfil?: number;
   id_usuario?: number;
   genero: number;
   estado: number;
@@ -25,4 +25,16 @@ export interface Perfil {
 
 export interface CheckUser extends RowDataPacket {
   match: number;
+}
+
+export interface DbUser extends RowDataPacket {
+  id_usuario?: number;
+  username: string;
+  email: string;
+  password_hash: string;
+}
+
+export interface NewUser extends RowDataPacket {
+  user: number;
+  perfil: number;
 }

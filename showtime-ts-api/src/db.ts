@@ -1,6 +1,7 @@
 import {
-  createPool, Pool, PoolConnection,
+  createPool, Pool,
 } from 'mysql2/promise';
+import MySQLStore from 'express-mysql-session';
 import dbConfig from './utils/dbConfig';
 
 export interface Configuration {
@@ -8,6 +9,7 @@ export interface Configuration {
   database: string
   user: string
   password: string
+  port: number
   multipleStatements: boolean
   connectTimeout: number
   decimalNumbers: boolean
@@ -18,13 +20,32 @@ export interface Configuration {
 class Database {
   public pool: Pool;
 
-  private connection?: PoolConnection;
+  public sessionStore: MySQLStore;
 
   private config: Configuration
 
   public constructor(config: Configuration) {
     this.config = config;
     this.pool = this.getPool();
+    this.sessionStore = new MySQLStore({
+      database: config.database,
+      createDatabaseTable: true,
+      host: config.host,
+      password: config.password,
+      user: config.user,
+      port: config.port,
+      expiration: 172800000,
+      checkExpirationInterval: 900000,
+      schema: {
+        tableName: 'tb_sessao',
+        columnNames: {
+          // eslint-disable-next-line @typescript-eslint/camelcase
+          session_id: 'id_sessao',
+          expires: 'sessao_expires',
+          data: 'sessao_dados',
+        },
+      },
+    }, this.pool);
   }
 
   public getPool() {
@@ -45,4 +66,4 @@ class Database {
   }
 }
 
-export default new Database(dbConfig).pool;
+export const { pool, sessionStore } = new Database(dbConfig);

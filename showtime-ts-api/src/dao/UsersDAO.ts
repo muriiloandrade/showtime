@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import { OkPacket, Pool } from 'mysql2/promise';
-import { User, Perfil, CheckUser } from '../models/Users/UserEntity';
+import {
+  User, Perfil, CheckUser, DbUser,
+} from '../models/Users/UserEntity';
 import logger from '../utils/logger';
 
 export default class UsersDAO {
@@ -10,13 +12,14 @@ export default class UsersDAO {
     this.pool = pool;
   }
 
-  public async checkUserExists(username?: string) {
+  public async checkUserExists(username?: string, id_usuario?: number) {
     try {
       const [rows] = await this.pool
-        .query<CheckUser[]>('SELECT COUNT(username) as `match` FROM tb_usuario WHERE username = :username;', {
+        .query<CheckUser[]>('CALL checkUserExists(:username, :id_usuario)', {
           username,
+          id_usuario,
         });
-      return { match: rows[0].match > 0 };
+      return { match: rows[0][0].match > 0 };
     } catch (error) {
       logger.error(`Erro ao consultar um usuário!\n${error}`);
       return { match: false };
@@ -28,8 +31,9 @@ export default class UsersDAO {
     try {
       let rows_user;
       let rows_perfil;
-      let rows_affected = {};
-      if (await this.checkUserExists()) {
+      let rows_affected;
+      const { match } = await this.checkUserExists(user.username, undefined);
+      if (!match) {
         await conn.beginTransaction();
         rows_user = await conn
           .query('INSERT INTO tb_usuario (username, email, password_hash) VALUES (:in_username, :in_email, :in_password_hash);', {
@@ -59,7 +63,7 @@ export default class UsersDAO {
     } catch (error) {
       conn.rollback();
       logger.error(`Erro na inserção do usuário!\n${error}`);
-      return JSON.parse('{}');
+      return { user: 0, perfil: 0 };
     } finally {
       conn.release();
     }
@@ -67,9 +71,10 @@ export default class UsersDAO {
 
   public async updateUser(perfil: Perfil) {
     const conn = await this.pool.getConnection();
-    let affectedRows;
     try {
-      if (await this.checkUserExists()) {
+      let rows;
+      const { match } = await this.checkUserExists(undefined, perfil.id_usuario);
+      if (!match) {
         await conn.beginTransaction();
         const query = `UPDATE tb_perfil SET 
           id_pessoa_genero = :id_pessoa_genero,
@@ -80,7 +85,7 @@ export default class UsersDAO {
           tex_website = :tex_website
         WHERE id_usuario = :id_usuario`;
 
-        const [rows] = await conn
+        [rows] = await conn
           .query(query, {
             id_pessoa_genero: perfil.genero,
             id_estado: perfil.estado,
@@ -91,17 +96,32 @@ export default class UsersDAO {
             id_usuario: perfil.id_usuario,
           });
         conn.commit();
-        affectedRows = {
-          updated: (rows as OkPacket).affectedRows,
-        };
       }
-      return affectedRows;
+      return { affectedRows: (rows as OkPacket).affectedRows };
     } catch (error) {
-      logger.info(`Erro ao atualizar o perfil do usuário ${perfil.id}\n${error}`);
+      logger.info(`Erro ao atualizar o perfil do usuário ${perfil.id_perfil}\n${error}`);
       conn.rollback();
-      return JSON.parse('{}');
+      return { affectedRows: 0 };
     } finally {
       conn.release();
+    }
+  }
+
+  public async searchUser(username?: string, id_usuario?: number) {
+    let query = 'SELECT id_usuario, username, password_hash FROM tb_usuario WHERE';
+
+    if (username) query += ' username = :username';
+    if (id_usuario) query += ' id_usuario = :id_usuario';
+    try {
+      const [rows] = await this.pool
+        .query<DbUser[]>(query, {
+          username,
+          id_usuario,
+        });
+      return rows;
+    } catch (error) {
+      logger.info('Erro ao procurar por um usuário!');
+      return [] as DbUser[];
     }
   }
 }

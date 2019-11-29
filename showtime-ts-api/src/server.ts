@@ -5,7 +5,7 @@ import {
   CERT, CERT_KEY, CERT_PASS,
 } from './utils/secrets';
 
-import pool from './db';
+import { pool } from './db';
 import app from './app';
 
 const httpsOptions = {
@@ -16,16 +16,6 @@ const httpsOptions = {
 
 // Pega uma conexão do pool de conexões para testar o estado do banco
 pool.getConnection().then(() => {
-  // Setando a timezone do banco como a timezone do Brasil
-  // conn.query('SET time_zone = "-03:00"')
-  //   .then((rows) => {
-  //     if (rows[0].stateChanges.systemVariables.time_zone === '-03:00') {
-  //       logger.info('Timezone alterada com sucesso!');
-  //     }
-  //   })
-  //   .catch((err) => {
-  //     if (err) { logger.error('Não foi possível alterar a timezone do banco!'); }
-  //   });
   logger.info('MySQL up and running!');
   https.createServer(httpsOptions, app)
     .listen(
