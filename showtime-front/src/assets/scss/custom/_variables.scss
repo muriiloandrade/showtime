@@ -141,9 +141,9 @@ $shape-colors: map-merge(
 $shapes-primary-colors: () !default;
 $shapes-primary-colors: map-merge(
   (
-    'step-1-gradient-bg': #281483,
-    'step-2-gradient-bg': #8f6ed5,
-    'step-3-gradient-bg': #d782d9,
+    'step-1-gradient-bg': #000947,
+    'step-2-gradient-bg': #113346,
+    'step-3-gradient-bg': #232f44,
     'span-1-bg': #53f,
     'span-2-bg': #4553ff,
     'span-3-bg': #4f40ff,
@@ -674,10 +674,10 @@ $nav-pills-border-width: 1px !default;
 $nav-pills-border-color: theme-color('primary') !default;
 $nav-pills-border-radius: $border-radius !default;
 
-$nav-pills-link-color: theme-color('primary') !default;
-$nav-pills-link-hover-color: darken(theme-color('primary'), 5%);
+$nav-pills-link-color: theme-color('default') !default;
+$nav-pills-link-hover-color: darken(theme-color('default'), 5%);
 $nav-pills-link-active-color: color-yiq(theme-color('primary'));
-$nav-pills-link-active-bg: theme-color('primary') !default;
+$nav-pills-link-active-bg: theme-color('default') !default;
 $nav-pills-box-shadow: $btn-box-shadow !default;
 
 // Navbar
