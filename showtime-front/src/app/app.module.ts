@@ -8,15 +8,25 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { HomeModule } from './components/home/home.module';
 import { LoginModule } from './components/login/login.module';
+import { PopularesModule } from './components/populares/populares.module';
+import { MoviedetailsComponent } from './components/moviedetails/moviedetails.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, FooterComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    FooterComponent,
+    MoviedetailsComponent,
+    SignupComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     HomeModule,
     LoginModule,
+    PopularesModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -4,6 +4,11 @@
 
 export const environment = {
   production: false,
+  tmdbkey: '',
+  gbkey: '',
+  ourapi: '',
+  tmdbapi: '',
+  gbapi: '',
 };
 
 /*
