@@ -6,20 +6,18 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
-import { FilmesComponent } from './components/filmes/filmes.component';
-import { HomeComponent } from './components/home/home.component';
-import { TestimoniesComponent } from './components/testimonies/testimonies.component';
+import { HomeModule } from './components/home/home.module';
+import { LoginModule } from './components/login/login.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    FooterComponent,
-    FilmesComponent,
-    HomeComponent,
-    TestimoniesComponent,
+  declarations: [AppComponent, NavbarComponent, FooterComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    HomeModule,
+    LoginModule,
   ],
-  imports: [BrowserModule, AppRoutingModule, NgbModule],
   providers: [],
   bootstrap: [AppComponent],
 })
