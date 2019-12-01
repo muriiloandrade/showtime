@@ -3,7 +3,7 @@
   class="navbar navbar-main navbar-expand-lg navbar-transparent headroom headroom--top headroom--pinned"
 >
   <div class="container">
-    <a class="navbar-brand mr-lg-5">
+    <a class="navbar-brand mr-lg-5" [routerLink]="['/']">
       <img src="./assets/img/st-whitelogo.png" alt="Showtime Logo" />
     </a>
     <button
@@ -23,7 +23,7 @@
       <div class="navbar-collapse-header">
         <div class="row">
           <div class="col-6 collapse-brand">
-            <a>
+            <a [routerLink]="['/']">
               <img src="./assets/img/st-logo.png" alt="Showtime Logo" />
             </a>
           </div>
@@ -44,13 +44,13 @@
       <ul class="navbar-nav ml-lg-auto">
         <li class="nav-item">
           <a class="nav-link nav-link-icon" [routerLink]="['/login']">
-            <span class="fas fa-user mr-1"></span>
+            <span class="fas fa-user"></span>
             <span class="nav-link-inner--text">Login</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link nav-link-icon" [routerLink]="['/signup']">
-            <span class="fas fa-user-plus mr-1"></span>
+            <span class="fas fa-user-plus"></span>
             <span class="nav-link-inner--text">Criar conta</span>
           </a>
         </li>
