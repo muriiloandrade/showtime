@@ -10,9 +10,9 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  public focus: boolean;
+  private focus: boolean;
   public loginForm: FormGroup;
-  public submitted = false;
+  private submitted = false;
 
   constructor(
     private fb: FormBuilder,
@@ -26,8 +26,18 @@ export class LoginComponent implements OnInit {
 
   mainForm() {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
-      password_hash: ['', Validators.required],
+      username: [
+        '',
+        Validators.compose([Validators.required, Validators.minLength(3)]),
+      ],
+      password_hash: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(128),
+        ]),
+      ],
     });
   }
 
@@ -45,8 +55,14 @@ export class LoginComponent implements OnInit {
         .login(this.loginForm.value)
         .pipe(first())
         .subscribe(
-          data => console.log('Logou!'),
-          error => console.log('Não logou!')
+          data => {
+            console.log('Logou!');
+            this.router.navigate(['/populares']);
+          },
+          error => {
+            console.log('Não logou!');
+            this.router.navigate(['/login']);
+          }
         );
     }
   }

@@ -10,7 +10,7 @@ import { HomeModule } from './components/home/home.module';
 import { LoginModule } from './components/login/login.module';
 import { PopularesModule } from './components/populares/populares.module';
 import { MoviedetailsComponent } from './components/moviedetails/moviedetails.component';
-import { SignupComponent } from './components/signup/signup.component';
+import { SignupModule } from './components/signup/signup.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,6 @@ import { SignupComponent } from './components/signup/signup.component';
     NavbarComponent,
     FooterComponent,
     MoviedetailsComponent,
-    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,6 +26,7 @@ import { SignupComponent } from './components/signup/signup.component';
     HomeModule,
     LoginModule,
     PopularesModule,
+    SignupModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

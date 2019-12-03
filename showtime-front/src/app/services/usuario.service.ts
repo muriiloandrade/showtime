@@ -8,7 +8,7 @@ export class UsuarioService {
   constructor(private http: HttpClient) {}
 
   signup(usuario: Usuario) {
-    return this.http.post<any>(`${environment.ourapi}/user/signup`, usuario);
+    return this.http.post<any>(`${environment.ourapi}/user/register`, usuario);
   }
 
   login(usuario: Usuario) {
