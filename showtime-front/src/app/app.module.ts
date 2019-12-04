@@ -11,6 +11,7 @@ import { LoginModule } from './components/login/login.module';
 import { PopularesModule } from './components/populares/populares.module';
 import { MoviedetailsComponent } from './components/moviedetails/moviedetails.component';
 import { SignupModule } from './components/signup/signup.module';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SignupModule } from './components/signup/signup.module';
     NavbarComponent,
     FooterComponent,
     MoviedetailsComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
