@@ -12,6 +12,7 @@ import { PopularesModule } from './components/populares/populares.module';
 import { MoviedetailsComponent } from './components/moviedetails/moviedetails.component';
 import { SignupModule } from './components/signup/signup.module';
 import { SeriedetailsComponent } from './components/seriedetails/seriedetails.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SeriedetailsComponent } from './components/seriedetails/seriedetails.co
     FooterComponent,
     MoviedetailsComponent,
     SeriedetailsComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

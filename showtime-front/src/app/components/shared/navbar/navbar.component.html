@@ -41,7 +41,7 @@
           </div>
         </div>
       </div>
-      <ul class="navbar-nav ml-lg-auto">
+      <ul *ngIf="isHome(); else notHome" class="navbar-nav ml-lg-auto">
         <li class="nav-item">
           <a class="nav-link nav-link-icon" [routerLink]="['/login']">
             <span class="fas fa-user"></span>
@@ -58,3 +58,21 @@
     </div>
   </div>
 </nav>
+
+<ng-template #notHome>
+  <ul class="navbar-nav navbar-nav-hover ml-lg-auto">
+    <li class="nav-item dropdown">
+      <a class="nav-link nav-link-icon" data-toggle="dropdown" role="button">
+        <span class="fas fa-user-circle"></span> Rainan Gramacho
+        <span class="nav-link-inner--text"></span>
+      </a>
+      <div class="dropdown-menu">
+        <a [routerLink]="['/series']" class="dropdown-item">Minhas séries</a>
+        <a [routerLink]="['/filmes']" class="dropdown-item">Meus filmes</a>
+        <a [routerLink]="['/livros']" class="dropdown-item">Meus livros</a>
+        <a [routerLink]="['/profile']" class="dropdown-item">Perfil</a>
+        <a [routerLink]="['/logout']" class="dropdown-item">Logout</a>
+      </div>
+    </li>
+  </ul>
+</ng-template>

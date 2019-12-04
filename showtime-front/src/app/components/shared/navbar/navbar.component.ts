@@ -35,19 +35,19 @@ export class NavbarComponent implements OnInit {
   isHome() {
     let titlee = this.location.prepareExternalUrl(this.location.path());
 
-    if (titlee === '#/home') {
+    if (titlee === '/' || titlee === '/login' || titlee === '/signup') {
       return true;
     } else {
       return false;
     }
   }
 
-  isDocumentation() {
-    let titlee = this.location.prepareExternalUrl(this.location.path());
-    if (titlee === '#/documentation') {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  // isDocumentation() {
+  //   let titlee = this.location.prepareExternalUrl(this.location.path());
+  //   if (titlee === '#/documentation') {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 }
