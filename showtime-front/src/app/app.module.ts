@@ -13,6 +13,7 @@ import { MoviedetailsComponent } from './components/moviedetails/moviedetails.co
 import { SignupModule } from './components/signup/signup.module';
 import { SeriedetailsComponent } from './components/seriedetails/seriedetails.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { LivroComponent } from './components/livro/livro.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     MoviedetailsComponent,
     SeriedetailsComponent,
     ProfileComponent,
+    LivroComponent,
   ],
   imports: [
     BrowserModule,

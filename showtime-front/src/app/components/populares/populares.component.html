@@ -70,19 +70,21 @@
                           >
                             {{ filmes.title }}
                           </p>
-                          <button class="btn btn-outline-danger">
-                            <span class="btn-inner--icon"
-                              ><i class="ni ni-favourite-28"></i
-                            ></span>
-                          </button>
-                          <button
-                            (click)="filmeDetalhe(filmes.id)"
-                            class="btn btn-outline-info"
-                          >
-                            <span class="btn-inner--icon"
-                              ><i class="fas fa-info-circle"></i
-                            ></span>
-                          </button>
+                          <div class="row justify-content-center">
+                            <button class="btn btn-outline-danger">
+                              <span class="btn-inner--icon"
+                                ><i class="ni ni-favourite-28"></i
+                              ></span>
+                            </button>
+                            <button
+                              (click)="filmeDetalhe(filmes.id)"
+                              class="btn btn-outline-info"
+                            >
+                              <span class="btn-inner--icon"
+                                ><i class="fas fa-info-circle"></i
+                              ></span>
+                            </button>
+                          </div>
                         </blockquote>
                       </div>
                     </div>
