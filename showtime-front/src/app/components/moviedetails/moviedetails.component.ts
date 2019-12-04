@@ -13,6 +13,7 @@ export class MoviedetailsComponent implements OnInit {
   filme_casting: Cast[];
   lista_filmes: Filme[];
   id: number;
+  currentRate = 6;
 
   constructor(
     private filmeService: FilmeService,
@@ -45,8 +46,8 @@ export class MoviedetailsComponent implements OnInit {
     this.filmeService.getCastDetails(this.id).subscribe(
       data => {
         const response = data;
-        this.filme_casting = response.cast.slice(0, 5);
-        console.log(response.cast.slice(0, 5));
+        this.filme_casting = response.cast.slice(0, 6);
+        console.log(response.cast.slice(0, 6));
       },
       error => {
         console.log(error);
@@ -60,7 +61,7 @@ export class MoviedetailsComponent implements OnInit {
     this.filmeService.getMoviesRecomend(this.id).subscribe(
       data => {
         const response = data;
-        this.lista_filmes = response.results.slice(0, 7);
+        this.lista_filmes = response.results.slice(0, 8);
         console.log(response.results);
       },
       error => {
