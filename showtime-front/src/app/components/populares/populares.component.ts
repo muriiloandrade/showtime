@@ -55,6 +55,10 @@ export class PopularesComponent implements OnInit {
     this.router.navigate(['filme', id]);
   }
 
+  serieDetalhe(id: number) {
+    this.router.navigate(['serie', id]);
+  }
+
   getSeries() {
     this.serieService.getLatestSeries().subscribe(
       data => {

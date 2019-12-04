@@ -21,7 +21,7 @@
                 <img
                   [src]="
                     'https://image.tmdb.org/t/p/w300/' +
-                    filme_detalhe.poster_path
+                    serie_detalhe.poster_path
                   "
                   class="card-img-top"
                 />
@@ -47,7 +47,7 @@
                 <div class="row">
                   <div class="col-md-10">
                     <h2 class="font-weight-bold">
-                      {{ filme_detalhe.title }}
+                      {{ serie_detalhe.original_name }}
                     </h2>
                   </div>
                   <div class="col-md-2 text-right">
@@ -59,7 +59,7 @@
                   </div>
                 </div>
                 <p class="lead text-justify">
-                  {{ filme_detalhe.overview }}
+                  {{ serie_detalhe.overview }}
                 </p>
               </div>
               <div class="row justify-content-center">
@@ -93,7 +93,7 @@
                   <div class="row">
                     <div
                       class="col-12 col-md-3 col-lg-4 mb-4"
-                      *ngFor="let cast of filme_casting"
+                      *ngFor="let cast of serie_casting"
                     >
                       <div class="px-4">
                         <img
@@ -129,22 +129,22 @@
           <div class="card bg-secondary shadow border-0">
             <div class="card-body p-lg-2">
               <div class="text-center">
-                <h4 class="display-3 text-default">Filmes Recomendados</h4>
+                <h4 class="display-3 text-default">Series Recomendadas</h4>
               </div>
               <section class="section bg-secondary">
                 <div class="container">
                   <div class="row">
                     <div
                       class="col-12 col-md-3 mb-4"
-                      *ngFor="let filmes of lista_filmes"
+                      *ngFor="let serie of lista_series"
                     >
                       <div class="card bg-default shadow border-0">
                         <img
-                          routerLink="/filme"
+                          routerLink="/serie"
                           class="img-fluid"
                           [src]="
                             'https://image.tmdb.org/t/p/w300/' +
-                            filmes.poster_path
+                            serie.poster_path
                           "
                           onerror="this.src = './assets/img/noimg.png' "
                         />
@@ -166,18 +166,18 @@
                             />
                           </svg>
                           <p
-                            *ngIf="filmes.title.length > 20"
+                            *ngIf="serie.name.length > 20"
                             class="font-weight-bold text-white text-truncate"
                             placement="top"
-                            ngbTooltip="{{ filmes.title }}"
+                            ngbTooltip="{{ serie.name }}"
                           >
-                            {{ filmes.title }}
+                            {{ serie.name }}
                           </p>
                           <p
-                            *ngIf="16 > filmes.title.length"
+                            *ngIf="20 > serie.name.length"
                             class="font-weight-bold text-white"
                           >
-                            {{ filmes.title }}
+                            {{ serie.name }}
                           </p>
                         </blockquote>
                       </div>
