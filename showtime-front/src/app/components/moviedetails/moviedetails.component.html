@@ -1,1 +1,194 @@
-<p>moviedetails works!</p>
+<main>
+  <div class="position-relative">
+    <!-- shape Hero -->
+    <section class="section section-lg section-shaped pb-250">
+      <div class="shape shape-style-1 shape-primary">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <section class="section">
+        <div class="container">
+          <div class="row row-grid align-items-center bg-secondary p-3">
+            <div class="col-md-4">
+              <div class="card bg-default shadow border-0">
+                <img
+                  [src]="
+                    'https://image.tmdb.org/t/p/w300/' +
+                    filme_detalhe.poster_path
+                  "
+                  class="card-img-top"
+                />
+                <blockquote class="card-blockquote">
+                  <svg
+                    preserveAspectRatio="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 583 95"
+                    class="svg-bg"
+                  >
+                    <polygon points="0,52 583,95 0,95" class="fill-default" />
+                    <polygon
+                      points="0,42 583,95 683,0 0,95"
+                      opacity=".2"
+                      class="fill-default"
+                    />
+                  </svg>
+                </blockquote>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="pl-md-5">
+                <div class="row">
+                  <div class="col-md-10">
+                    <h2 class="font-weight-bold">
+                      {{ filme_detalhe.title }}
+                    </h2>
+                  </div>
+                  <div class="col-md-2 text-right">
+                    <button class="btn btn-success">
+                      <span class="btn-inner--icon"
+                        ><i class="fas fa-check-circle"></i
+                      ></span>
+                    </button>
+                  </div>
+                </div>
+                <p class="lead text-justify">
+                  {{ filme_detalhe.overview }}
+                </p>
+              </div>
+              <div class="row justify-content-center">
+                <div class="col-md-4">
+                  <ngb-rating [(rate)]="currentRate">
+                    <ng-template let-fill="fill" let-index="index">
+                      <span
+                        class="star"
+                        [class.filled]="fill === 100"
+                        [class.bad]="index < 3"
+                        >&#9733;</span
+                      >
+                    </ng-template>
+                  </ngb-rating>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="container">
+        <div class="row">
+          <div class="card bg-secondary shadow border-0">
+            <div class="card-body p-lg-2">
+              <div class="text-center">
+                <h4 class="display-3 text-default">Principais Atores</h4>
+              </div>
+              <section class="section bg-secondary">
+                <div class="container">
+                  <div class="row">
+                    <div
+                      class="col-12 col-md-3 col-lg-4 mb-4"
+                      *ngFor="let cast of filme_casting"
+                    >
+                      <div class="px-4">
+                        <img
+                          style="width: 200px;"
+                          routerLink="/filme"
+                          class="rounded-circle img-center img-fluid shadow shadow-lg--hover"
+                          [src]="
+                            'https://image.tmdb.org/t/p/w300/' +
+                            cast.profile_path
+                          "
+                          onerror="this.src = './assets/img/noimg.png' "
+                        />
+                        <div class="pt-4 text-center">
+                          <h5 class="title">
+                            <span class="d-block mb-1">{{ cast.name }}</span>
+                            <small class="h6 text-muted">{{
+                              cast.character
+                            }}</small>
+                          </h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container pt-lg-md">
+        <div class="row">
+          <div class="card bg-secondary shadow border-0">
+            <div class="card-body p-lg-2">
+              <div class="text-center">
+                <h4 class="display-3 text-default">Filmes Recomendados</h4>
+              </div>
+              <section class="section bg-secondary">
+                <div class="container">
+                  <div class="row">
+                    <div
+                      class="col-12 col-md-3 mb-4"
+                      *ngFor="let filmes of lista_filmes"
+                    >
+                      <div class="card bg-default shadow border-0">
+                        <img
+                          routerLink="/filme"
+                          class="img-fluid"
+                          [src]="
+                            'https://image.tmdb.org/t/p/w300/' +
+                            filmes.poster_path
+                          "
+                          onerror="this.src = './assets/img/noimg.png' "
+                        />
+                        <blockquote class="card-blockquote">
+                          <svg
+                            preserveAspectRatio="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 583 95"
+                            class="svg-bg"
+                          >
+                            <polygon
+                              points="0,52 583,95 0,95"
+                              class="fill-default"
+                            />
+                            <polygon
+                              points="0,42 583,95 683,0 0,95"
+                              opacity=".2"
+                              class="fill-default"
+                            />
+                          </svg>
+                          <p
+                            *ngIf="filmes.title.length > 16"
+                            class="font-weight-bold text-white text-truncate"
+                            placement="top"
+                            ngbTooltip="{{ filmes.title }}"
+                          >
+                            {{ filmes.title }}
+                          </p>
+                          <p
+                            *ngIf="16 > filmes.title.length"
+                            class="font-weight-bold text-white"
+                          >
+                            {{ filmes.title }}
+                          </p>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
